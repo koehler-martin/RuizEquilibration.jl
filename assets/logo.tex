@@ -1,0 +1,58 @@
+\documentclass[tikz, border=0pt]{standalone} % Border 0 ensures the square is the limit
+\usepackage{xcolor}
+
+% Define the official Julia colors
+\definecolor{julia_purple}{rgb}{0.584,0.345,0.698}
+\definecolor{julia_red}{rgb}{0.796,0.235,0.2}
+\definecolor{julia_green}{rgb}{0.22,0.596,0.149}
+\definecolor{julia_blue}{rgb}{0.251,0.388,0.847}
+
+% Custom background color
+\definecolor{bg_color}{RGB}{254,254,254}
+
+\begin{document}
+	\begin{tikzpicture}
+		% --- Variables for Logo Tuning ---
+		\def\s{0.80}              % Spacing between dots (grid)
+		\def\dr{0.40}             % Dot radius
+		\def\lw{10.0}              % Bracket Line Width (pt)
+		\def\ex{0.7}              % Vertical extension height
+		\def\bracketoffset{0.1}  % Horizontal padding
+		\def\cr{0.10}             % Corner radius for the bracket bends
+		\def\bw{0.40}             % Width of the bracket "teeth"
+		
+		% *** SQUARE ENVELOPE SETTING ***
+		\def\logoSize{6.0}        % The total width/height of the square canvas (in cm)
+		
+		% 2. Paint the Background Square
+		% Change "bg_color" to "white" or any other color as needed
+		\fill[bg_color] (-\logoSize/2, -\logoSize/2) rectangle (\logoSize/2, \logoSize/2);
+		
+		% Shift the drawing so the center of the matrix dots is at (0,0)
+		\begin{scope}[shift={({-1.5*\s}, {-1.5*\s})}]
+			
+			% --- Draw the Matrix Dots ---
+			\fill[julia_purple] (0, 3*\s) circle (\dr);
+			\fill[julia_red]    (\s, 2*\s) circle (\dr);
+			\fill[julia_green]  (2*\s, \s) circle (\dr);
+			\fill[julia_blue]   (3*\s, 0) circle (\dr);
+			
+			% --- Draw Rounded Brackets ---
+			% LEFT BRACKET
+			\draw[line width=\lw pt, line join=round, line cap=round, rounded corners=\cr cm] 
+			({-(0+\dr+\bracketoffset)}, -\ex) -- 
+			({-(0+\dr+\bracketoffset+\bw)}, -\ex) -- 
+			({-(0+\dr+\bracketoffset+\bw)}, {3*\s+\ex}) -- 
+			({-(0+\dr+\bracketoffset)}, {3*\s+\ex});
+			
+			% RIGHT BRACKET
+			\draw[line width=\lw pt, line join=round, line cap=round, rounded corners=\cr cm] 
+			({(3*\s+\dr+\bracketoffset)}, -\ex) -- 
+			({(3*\s+\dr+\bracketoffset+\bw)}, -\ex) -- 
+			({(3*\s+\dr+\bracketoffset+\bw)}, {3*\s+\ex}) -- 
+			({(3*\s+\dr+\bracketoffset)}, {3*\s+\ex});
+			
+		\end{scope}
+		
+	\end{tikzpicture}
+\end{document}
