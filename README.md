@@ -40,7 +40,7 @@ is obtained through the transformations $\hat{x} = D^{-1} x$, $\widehat{H} = D H
 ## Installation
 It can be installed using the Julia package manager by pressing `]` in the REPL and entering:
 ```julia
-https://github.com/koehler-martin/RuizEquilibration.jl
+add RuizEquilibration
 ```
 
 ## Usage
